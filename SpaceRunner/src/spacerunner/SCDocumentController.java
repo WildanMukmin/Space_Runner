@@ -71,5 +71,20 @@ public class SCDocumentController implements Initializable {
         nyawa2.setVisible(false);
         nyawa3.setVisible(false);
     }
+    private void startGameLoop() {
+        try {
+            gameLoop = new Timeline(new KeyFrame(Duration.millis(16), e -> {
+                try {
+                    updateGame();
+                } catch (Exception ex) {
+                    System.err.println("Error in game loop: " + ex.getMessage());
+                }
+            }));
+            gameLoop.setCycleCount(Timeline.INDEFINITE);
+            gameLoop.play();
+        } catch (Exception e) {
+            System.err.println("Failed to start game loop: " + e.getMessage());
+        }
+    }
 
 }
