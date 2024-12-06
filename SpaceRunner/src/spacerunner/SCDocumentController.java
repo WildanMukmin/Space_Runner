@@ -98,4 +98,32 @@ public class SCDocumentController implements Initializable {
         starSpawner.setCycleCount(Timeline.INDEFINITE);
         starSpawner.play();
     }
+
+    private void updateGame() {
+        if (gameOver) return;
+        try {
+            // Update ship position
+            double newX = pesawat.getLayoutX() + velocityX;
+            double newY = pesawat.getLayoutY() + velocityY;
+    
+            // Boundary checking for ship
+            newX = Math.max(0, Math.min(ruang.getWidth() - pesawat.getFitWidth(), newX));
+            newY = Math.max(0, Math.min(ruang.getHeight() - pesawat.getFitHeight(), newY));
+    
+            pesawat.setLayoutX(newX);
+            pesawat.setLayoutY(newY);
+    
+            // Apply damping
+            velocityX *= damping;
+            velocityY *= damping;
+    
+            // Check collisions
+            checkCollisions();
+    
+            // Clean up off-screen aliens
+            aliens.removeIf(alien -> alien.isOffScreen());
+        } catch (Exception e) {
+            System.err.println("Error updating game: " + e.getMessage());
+        }
+    }
 }
