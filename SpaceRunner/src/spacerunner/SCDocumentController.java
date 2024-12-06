@@ -92,4 +92,10 @@ public class SCDocumentController implements Initializable {
         alienSpawner.setCycleCount(Timeline.INDEFINITE);
         alienSpawner.play();
     }
+
+    private void startStarSpawner() {
+        starSpawner = new Timeline(new KeyFrame(Duration.seconds(4), e -> spawnStar()));
+        starSpawner.setCycleCount(Timeline.INDEFINITE);
+        starSpawner.play();
+    }
 }
