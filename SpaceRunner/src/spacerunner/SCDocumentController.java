@@ -58,5 +58,18 @@ public class SCDocumentController implements Initializable {
         }
     }
 
+    private void setupGameControls() {
+        ruang.setOnKeyPressed(this::gerakPesawat);
+        ruang.setOnKeyReleased(this::handleKeyRelease);
+        ruang.setFocusTraversable(true);
+        ruang.requestFocus();
+        ruang.setOnMouseClicked(this::triggerPesawat);
+        currentScore.setVisible(false);
+        jumlahAlienSpawn.setVisible(false);
+        pesawat.setVisible(false);
+        nyawa1.setVisible(false);
+        nyawa2.setVisible(false);
+        nyawa3.setVisible(false);
+    }
 
 }
