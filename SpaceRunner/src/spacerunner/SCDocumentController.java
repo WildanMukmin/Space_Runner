@@ -20,9 +20,42 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class SCDocumentController implements Initializable {
+    @FXML private ImageView pesawat;
+    @FXML private AnchorPane ruang;
+    
+    private double velocityX = 0;
+    private double velocityY = 0;    
+    private final double damping = 0.95;
+    private final double speed = 16.0;
+    private Timeline gameLoop;
+    private Timeline alienSpawner;
+    private Timeline starSpawner;
+    private List<Alien> aliens = new ArrayList<>();
+    private List<Star> Stars = new ArrayList<>();
+    private boolean gameOver = false;
+    private int score = 0;
+    private int nyawa = 3;
+
+    @FXML
+    private Text currentScore;
+    @FXML
+    private Text intitialGame;
+    @FXML
+    private ImageView nyawa1;
+    @FXML
+    private ImageView nyawa2;
+    @FXML
+    private ImageView nyawa3;
+    @FXML
+    private Text jumlahAlienSpawn;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // to do anything
+        try {
+            setupGameControls();
+            startGameLoop();
+        } catch (Exception e) {
+            System.err.println("Error during initialization: " + e.getMessage());
+        }
     }
 
 
