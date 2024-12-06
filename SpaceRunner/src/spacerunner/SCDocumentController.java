@@ -126,4 +126,38 @@ public class SCDocumentController implements Initializable {
             System.err.println("Error updating game: " + e.getMessage());
         }
     }
+
+        private void checkCollisions() {
+        try {
+            // Check collisions with aliens
+            for (Alien alien : new ArrayList<>(aliens)) {
+                if (alien.getGambar().getBoundsInParent().intersects(pesawat.getBoundsInParent())) {
+                    alien.remove();
+                    aliens.remove(alien);
+    
+                    // Decrease life
+                    nyawa--;
+                    switch (nyawa) {
+                        case 2:
+                            nyawa3.setVisible(false);
+                            break;
+                        case 1:
+                            nyawa2.setVisible(false);
+                            break;
+                        case 0:
+                            nyawa1.setVisible(false);
+                            ruang.getChildren().remove(pesawat);
+                            currentScore.setText("GAME OVER SCORE " + score);
+                            currentScore.setLayoutY(currentScore.getLayoutY() + 150);
+                            currentScore.setLayoutX(currentScore.getLayoutX() - 35);
+                            gameOver();
+                            break;
+                    }
+                    break;
+                }
+            }
+        } catch (Exception e) {
+            System.err.println("Error during collision check: " + e.getMessage());
+        }
+    }
 }
