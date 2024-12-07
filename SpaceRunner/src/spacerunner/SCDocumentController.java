@@ -160,4 +160,15 @@ public class SCDocumentController implements Initializable {
             System.err.println("Error during collision check: " + e.getMessage());
         }
     }
+
+    private void spawnAlien() {
+        if (gameOver) return;
+        try {
+            Alien alien = new Alien(ruang);
+            aliens.add(alien);
+            jumlahAlienSpawn.setText("Jumlah Alien Spawn: " + Alien.getJumlahAlien());
+        } catch (Exception e) {
+            System.err.println("Error spawning alien: " + e.getMessage());
+        }
+    }
 }
