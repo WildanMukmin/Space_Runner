@@ -127,7 +127,7 @@ public class SCDocumentController implements Initializable {
         }
     }
 
-        private void checkCollisions() {
+    private void checkCollisions() {
         try {
             // Check collisions with aliens
             for (Alien alien : new ArrayList<>(aliens)) {
@@ -154,6 +154,16 @@ public class SCDocumentController implements Initializable {
                             break;
                     }
                     break;
+                }
+            }
+
+            // Check collisions with stars
+            for (Star star : new ArrayList<>(Stars)) {
+                if (star.getGambar().getBoundsInParent().intersects(pesawat.getBoundsInParent())) {
+                    star.remove();
+                    Stars.remove(star);
+                    score++;
+                    currentScore.setText("Score: " + score);
                 }
             }
         } catch (Exception e) {
