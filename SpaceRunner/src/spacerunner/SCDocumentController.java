@@ -171,7 +171,7 @@ public class SCDocumentController implements Initializable {
             System.err.println("Error spawning alien: " + e.getMessage());
         }
     }
-    
+
     private void spawnStar() {
         if (gameOver) return;
         try {
@@ -179,6 +179,26 @@ public class SCDocumentController implements Initializable {
             Stars.add(star);
         } catch (Exception e) {
             System.err.println("Error spawning star: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void triggerPesawat(MouseEvent event) {
+        try {
+            ruang.requestFocus();
+            startAlienSpawner();
+            startStarSpawner();
+            currentScore.setVisible(true);
+            intitialGame.setVisible(false);
+            jumlahAlienSpawn.setVisible(true);
+            pesawat.setVisible(true);
+            if (nyawa == 3) {
+                nyawa1.setVisible(true);
+                nyawa2.setVisible(true);
+                nyawa3.setVisible(true);
+            }
+        } catch (Exception e) {
+            System.err.println("Error triggering spaceship: " + e.getMessage());
         }
     }
 }
