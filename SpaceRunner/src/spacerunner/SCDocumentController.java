@@ -171,4 +171,14 @@ public class SCDocumentController implements Initializable {
             System.err.println("Error spawning alien: " + e.getMessage());
         }
     }
+    
+    private void spawnStar() {
+        if (gameOver) return;
+        try {
+            Star star = new Star(ruang);
+            Stars.add(star);
+        } catch (Exception e) {
+            System.err.println("Error spawning star: " + e.getMessage());
+        }
+    }
 }
