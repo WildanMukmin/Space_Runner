@@ -171,6 +171,13 @@ public class SCDocumentController implements Initializable {
         }
     }
 
+    private void gameOver() {
+        gameOver = true;
+        gameLoop.stop();
+        alienSpawner.stop();
+        // Add game over UI logic here
+    }
+
     private void spawnAlien() {
         if (gameOver) return;
         try {
