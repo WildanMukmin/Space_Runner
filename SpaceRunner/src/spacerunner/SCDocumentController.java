@@ -197,6 +197,19 @@ public class SCDocumentController implements Initializable {
         }        
     }
 
+    private void handleKeyRelease(KeyEvent event) {
+        switch (event.getCode()) {
+            case UP:
+            case DOWN:
+                velocityY *= 0.5; // Smooth deceleration
+                break;
+            case LEFT:
+            case RIGHT:
+                velocityX *= 0.5;
+                break;
+        }
+    }
+
     private void spawnAlien() {
         if (gameOver) return;
         try {
