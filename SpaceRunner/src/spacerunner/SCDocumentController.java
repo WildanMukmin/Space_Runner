@@ -178,6 +178,25 @@ public class SCDocumentController implements Initializable {
         // Add game over UI logic here
     }
 
+    @FXML
+    private void gerakPesawat(KeyEvent event) {
+        if (gameOver) return;        
+        switch (event.getCode()) {
+            case UP:
+                velocityY = -speed;
+                break;
+            case DOWN:
+                velocityY = speed;
+                break;
+            case LEFT:
+                velocityX = -speed;
+                break;
+            case RIGHT:
+                velocityX = speed;
+                break;
+        }        
+    }
+
     private void spawnAlien() {
         if (gameOver) return;
         try {
